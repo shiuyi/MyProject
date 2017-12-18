@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     }
 
     @Override
-    public void onSensorChanged(SensorEvent sensorEvent) {
+    public void onSensorChanged(SensorEvent event) {
         if(mx==0){
             mx=(layout.getWidth()-igv.getWidth())/20.0;
 
@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         igv.setLayoutParams(parms);
 
-        txv.setText(String.format("X軸: %1.2f , Y軸: %1.2f, Z軸: %1.2f",event.values[0]event.values[1],event.values[2]));
+        txv.setText(String.format("X軸: %1.2f , Y軸: %1.2f, Z軸: %1.2f",event.values[0],event.values[1],event.values[2]));
     }
 
     @Override
@@ -62,17 +62,17 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     @Override
     protected void onResume(){
         super.onResume();
-        sm.unregisterListener(this,sr,SensorManager.SENSOR_DELAY_NORMAL);
+        sm.registerListener(this,sr,SensorManager.SENSOR_DELAY_NORMAL);
     }
     @Override
     protected void onPause(){
         super.onPause();
         sm.unregisterListener(this);
     }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu){
-        //Inflate the menu;
-        getMenuInflater().inflate(R.menu.activity_main,menu);
-        return true;
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu){
+//        //Inflate the menu;
+//        getMenuInflater().inflate(R.menu.activity_main,menu);
+//        return true;
+//    }
 }
